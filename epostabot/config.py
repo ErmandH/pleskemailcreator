@@ -42,10 +42,14 @@ class BotConfig:
                 "--disable-gpu",
             ]
     
-    def get_email(self, index: int) -> str:
-        """Belirtilen indeks için e-posta adresi oluştur"""
+    def get_email_prefix(self, index: int) -> str:
+        """Belirtilen indeks için e-posta prefix'i oluştur (@ öncesi kısım)"""
         number = self.start_number + index
-        return f"{self.prefix}{number}{self.email_domain}"
+        return f"{self.prefix}{number}"
+    
+    def get_email(self, index: int) -> str:
+        """Belirtilen indeks için tam e-posta adresi oluştur (log için)"""
+        return f"{self.get_email_prefix(index)}{self.email_domain}"
     
     def get_all_emails(self) -> list:
         """Tüm e-posta adreslerinin listesini döndür"""
