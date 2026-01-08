@@ -1,0 +1,14 @@
+services:
+  epostabot:
+    build: .
+    container_name: epostabot
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      # X11 socket paylaşımı (Linux için)
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Uygulama dosyaları (geliştirme için)
+      - .:/app
+    network_mode: host
+    # Linux'ta GUI için gerekli
+    privileged: true
